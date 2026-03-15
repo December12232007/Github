@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Capitalization Quiz Game</title>
+
+<style>
+body{
+font-family: Arial;
+background:#f2f2f2;
+text-align:center;
+padding:20px;
+}
+
+.quiz-box{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+max-width:400px;
+margin:auto;
+}
+
+button{
+display:block;
+margin:10px auto;
+padding:10px;
+width:80%;
+border:none;
+border-radius:5px;
+background:darkblue;
+color:white;
+font-size:16px;
+}
+
+button:hover{
+background:blue;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Capitalization Quiz Game</h1>
+
+<div class="quiz-box">
+
+<h2 id="question">Question will appear here</h2>
+
+<button onclick="checkAnswer('a')" id="a"></button>
+<button onclick="checkAnswer('b')" id="b"></button>
+<button onclick="checkAnswer('c')" id="c"></button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+let questions = [
+{
+question:"Which sentence is correct?",
+a:"monday is my favorite day.",
+b:"Monday is my favorite day.",
+c:"monday Is my favorite day.",
+correct:"b"
+},
+
+{
+question:"Which word should be capitalized?",
+a:"teacher ana",
+b:"Teacher Ana",
+c:"teacher ana",
+correct:"b"
+},
+
+{
+question:"Which is correct capitalization of a place?",
+a:"philippines",
+b:"Philippines",
+c:"PHILIPPINES",
+correct:"b"
+},
+
+{
+question:"Which sentence is correct?",
+a:"i am doing my homework.",
+b:"I am doing my homework.",
+c:"i Am doing my homework.",
+correct:"b"
+},
+
+{
+question:"Which is correct?",
+a:"christmas",
+b:"Christmas",
+c:"CHRISTMAS",
+correct:"b"
+}
+
+];
+
+let currentQuestion = 0;
+
+function loadQuestion(){
+let q = questions[currentQuestion];
+document.getElementById("question").innerText = q.question;
+document.getElementById("a").innerText = q.a;
+document.getElementById("b").innerText = q.b;
+document.getElementById("c").innerText = q.c;
+}
+
+function checkAnswer(answer){
+
+let q = questions[currentQuestion];
+
+if(answer == q.correct){
+document.getElementById("result").innerText="✅ Correct!";
+}else{
+document.getElementById("result").innerText="❌ Wrong!";
+}
+
+currentQuestion++;
+
+if(currentQuestion < questions.length){
+setTimeout(()=>{
+document.getElementById("result").innerText="";
+loadQuestion();
+},1000);
+}else{
+document.getElementById("question").innerText="Quiz Finished!";
+document.getElementById("a").style.display="none";
+document.getElementById("b").style.display="none";
+document.getElementById("c").style.display="none";
+}
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
